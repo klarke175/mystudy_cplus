@@ -6,7 +6,7 @@ using namespace std;
 class loop_list
 {
 public:
-    loop_list(int list_len);
+    loop_list(int list_len=6);
     ~loop_list();
 
     int init();

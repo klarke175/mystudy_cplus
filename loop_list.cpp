@@ -1,24 +1,18 @@
 
 #include "./loop_list.h"
 
+#define LIST_IS_EMPTY -1
 
-
+/*
+//构造函数
 loop_list::loop_list(int list_len):m_list_len(list_len)
 {
     m_list_data = NULL;
     //m_list_len  = list_len;
-    m_head = -1;
-    m_tail = -1;
+    m_head = LIST_IS_EMPTY;
+    m_tail = LIST_IS_EMPTY;
 
     cout << "list len = " << m_list_len << endl;
-}
-
-loop_list::~loop_list()
-{
-    if(NULL != m_list_data)
-        delete []m_list_data;
-
-    cout << "list delete " << endl;
 }
 
 int loop_list::init()
@@ -38,6 +32,30 @@ int loop_list::init()
 
     return 0;
 }
+*/
+
+
+
+
+loop_list::loop_list(int list_len):m_list_len(list_len)
+{
+    m_list_data = new string[m_list_len]; //后续使用时需检查指针是否为空
+
+    m_head = LIST_IS_EMPTY;
+    m_tail = LIST_IS_EMPTY;
+
+    cout << "list len = " << m_list_len << endl;
+}
+
+loop_list::~loop_list()
+{
+    if(NULL != m_list_data)
+        delete []m_list_data;
+
+    cout << "list delete " << endl;
+}
+
+
 
 void loop_list::flag_move(int& flag)
 {
@@ -55,14 +73,14 @@ void loop_list::flag_move(int& flag)
 void loop_list::get_tail()
 {
 
-    if((-1 == m_head) && (-1 == m_tail))// 初始化状态
+    if((LIST_IS_EMPTY == m_head) && (LIST_IS_EMPTY == m_tail))// 初始化状态
     {
         m_head = 0;
         m_tail = 0;
     }
     else if(0 == m_head)  //第一轮循环
     {
-        if(m_tail == (m_list_len -1)) //循环队列第一次满了
+        if(m_tail == (m_list_len - 1)) //循环队列第一次满了
         {
             m_head = 1;
             m_tail = 0;
@@ -99,7 +117,7 @@ void loop_list::show_list()
     cout << "HEAD = "<< m_head << endl;
     cout << "TAIL = "<< m_tail << endl << endl;
 
-    if((-1 == m_head) && (-1 == m_tail))
+    if((LIST_IS_EMPTY == m_head) && (LIST_IS_EMPTY == m_tail))
     {
         cout << "list is empty!" << endl;
     }

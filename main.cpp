@@ -11,7 +11,7 @@ int loop_list_test(void)
 {
     loop_list list1(10);
 
-    list1.init();
+    //list1.init();
     list1.show_list();
 
     list1.add("aaa");
@@ -36,8 +36,8 @@ int loop_list_test2(void)
 {
     string temp;
 
-    loop_list list1(10);  //实例化
-    list1.init();         //初始化
+    loop_list list1;  //实例化
+    //list1.init();         //初始化
 
     list1.show_list();
 
