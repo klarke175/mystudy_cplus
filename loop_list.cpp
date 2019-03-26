@@ -95,7 +95,7 @@ void loop_list::show_list()
 {
     int i;
 
-    cout << "#------------------------#"<< endl;
+    cout << endl << "#------------------------#"<< endl;
     cout << "HEAD = "<< m_head << endl;
     cout << "TAIL = "<< m_tail << endl << endl;
 

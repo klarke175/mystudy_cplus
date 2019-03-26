@@ -37,11 +37,11 @@ int loop_list_test2(void)
     string temp;
 
     loop_list list1(10);  //实例化
-    list1.init();     //初始化
+    list1.init();         //初始化
 
     list1.show_list();
 
-    cout << "sizeof() = " << sizeof(list1) << endl;
+    cout << "sizeof() = " << sizeof(list1) << endl << endl;
 
     cout << "please input info:   (quit: ~ )" << endl;
 
@@ -50,8 +50,21 @@ int loop_list_test2(void)
         cout << "> ";
         cin >> temp;
 
-        list1.add(temp);
-        list1.show_list();
+        if ("--help"  == temp)
+        {
+            cout << "--length : show list length" << endl;
+        }
+        else if("--length"  == temp)
+        {
+            list1.get_list_len();
+        }
+        else
+        {
+            list1.add(temp);
+            list1.show_list();
+        }
+
+
     }
 
     return 0;
@@ -77,9 +90,9 @@ void person_test()
     cout << sizeof(p2) << endl;
 
 
-    string a = "hello123456789123456789123456789";
-    cout << endl << sizeof(a) << endl;
-    cout << a << endl;
+//    string a = "hello123456789123456789123456789";
+//    cout << endl << sizeof(a) << endl;
+//    cout << a << endl;
 }
 
 extern void vector_test();
@@ -95,9 +108,9 @@ int main()
     // cout << "sizeof(loop_list) = " << sizeof(list1) << endl;
     // cout << "sizeof(int) = " << sizeof(int) << endl;
 
-    //loop_list_test2();
+    loop_list_test2();
 
-	vector_test();
+	//vector_test();
 
     return 0;
 }
