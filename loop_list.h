@@ -11,8 +11,9 @@ public:
 
     int init();
     int add(string);
-    void show_list();
-    void get_list_len();
+    int show_list();
+    int get_list_len();
+    int reset();
 
 private:
     string *m_list_data;
@@ -25,13 +26,4 @@ private:
     void get_tail();
 };
 
-class abc
-{
-    public:
-        abc();
-        ~abc();
-    protected:
 
-    private:
-
-};

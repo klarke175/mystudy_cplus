@@ -2,6 +2,9 @@
 #include "./loop_list.h"
 
 #define LIST_IS_EMPTY -1
+#define LIST_INIT_OFFSET 0
+
+#define FUNC_ERROR -1
 
 /*
 //构造函数
@@ -52,6 +55,8 @@ loop_list::~loop_list()
     if(NULL != m_list_data)
         delete []m_list_data;
 
+    m_list_data = NULL;   //内存释放后注意指针置 0 !!
+
     cout << "list delete " << endl;
 }
 
@@ -61,7 +66,7 @@ void loop_list::flag_move(int& flag)
 {
     if((m_list_len - 1) == flag)
     {
-        flag = 0;
+        flag = LIST_INIT_OFFSET;
     }
     else
     {
@@ -75,15 +80,15 @@ void loop_list::get_tail()
 
     if((LIST_IS_EMPTY == m_head) && (LIST_IS_EMPTY == m_tail))// 初始化状态
     {
-        m_head = 0;
-        m_tail = 0;
+        m_head = LIST_INIT_OFFSET;
+        m_tail = LIST_INIT_OFFSET;
     }
-    else if(0 == m_head)  //第一轮循环
+    else if(LIST_INIT_OFFSET == m_head)  //第一轮循环
     {
         if(m_tail == (m_list_len - 1)) //循环队列第一次满了
         {
             m_head = 1;
-            m_tail = 0;
+            m_tail = LIST_INIT_OFFSET;
         }
         else // 第一轮满之前情况
         {
@@ -109,8 +114,13 @@ int loop_list::add(string list_data)
 }
 
 
-void loop_list::show_list()
+int loop_list::show_list()
 {
+    if (NULL == m_list_data)
+    {
+       return FUNC_ERROR;
+    }
+
     int i;
 
     cout << endl << "#------------------------#"<< endl;
@@ -127,9 +137,9 @@ void loop_list::show_list()
     }
     else
     {
-        if(0 == m_head)
+        if(LIST_INIT_OFFSET == m_head)
         {
-            for(i = 0;i <= m_tail;i++)
+            for(i = LIST_INIT_OFFSET;i <= m_tail;i++)
             {
                 cout << "NODE" << i << ":" << m_list_data[i] << endl;
             }
@@ -147,13 +157,34 @@ void loop_list::show_list()
             }
         }
     }
+
+    return 0;
 }
 
-void loop_list::get_list_len()
+//获取list长度
+int loop_list::get_list_len()
 {
-    cout << "const list_len = " << m_list_len << endl;
+    return m_list_len;
+    //cout << "const list_len = " << m_list_len << endl;
 }
 
+int loop_list::reset()
+{
+    int i = 0;
+
+    if(NULL != m_list_data)
+    {
+        for (i = 0; i < (m_list_len - 1) ; i++ )
+        {
+            m_list_data[i] = "0";
+        }
+    }
+
+    m_head = LIST_IS_EMPTY;
+    m_tail = LIST_IS_EMPTY;
+
+    return 0;
+}
 
 
 

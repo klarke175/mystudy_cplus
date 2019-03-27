@@ -56,14 +56,13 @@ int loop_list_test2(void)
         }
         else if("--length"  == temp)
         {
-            list1.get_list_len();
+            cout << "LIST length = " << list1.get_list_len() << endl;
         }
         else
         {
             list1.add(temp);
             list1.show_list();
         }
-
 
     }
 
